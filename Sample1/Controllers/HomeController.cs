@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Sample1.Models;
@@ -21,6 +22,13 @@ namespace Sample1.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Get(string key)
+        {
+            var value = Environment.GetEnvironmentVariable(key);
+
+            return Ok($"{key}:{value}");
         }
 
         public IActionResult Privacy()
